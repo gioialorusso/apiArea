@@ -1,0 +1,8 @@
+{
+  "require": {
+    "silex/silex": "v2.2.1",
+    "symfony/validator": "v3.4.18",
+    "phpunit/phpunit": "v6.5.13",
+    "guzzlehttp/guzzle":"v6.3.3"
+  }
+}
