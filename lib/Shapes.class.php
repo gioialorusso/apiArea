@@ -73,11 +73,18 @@ class Square extends BaseShape implements Shape{
     }
 }
 
-class Circle extends Square implements Shape{
+class Circle extends BaseShape implements Shape{
+    private $radius;
+    
+    public function __construct($radius)
+    {
+        $this->validate(func_get_args());
+        $this->radius = $radius;
+    }
     
     public function calcArea(): float
     {
-        return round(parent::calcArea()*pi(), 3);
+        return round(pow($this->radius, 2)*pi(), 3);
     }
 }
 
