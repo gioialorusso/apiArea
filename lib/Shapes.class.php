@@ -13,10 +13,6 @@ abstract class BaseShape implements Shape{
     const SPECIFY_INPUT_PARAMS = "Please specify input parameters";
     const NO_NONNUMERIC_PARAMS = "You cannot use non-numeric parameters";
     
-    const CIRCLE = "circle";
-    const SQUARE = "square";
-    const RECTANGLE = "rectangle";
-    
     const DECIMALS = 3;
     
     
@@ -41,8 +37,17 @@ abstract class BaseShape implements Shape{
         
     }
     
+}
+
+
+class ShapeFactory{
+    
+    const CIRCLE = "circle";
+    const SQUARE = "square";
+    const RECTANGLE = "rectangle";
+    
     /**
-     * 
+     *
      * @param array $input_parameters
      * @throws BadRequestHttpException
      * @return BaseShape
@@ -54,17 +59,18 @@ abstract class BaseShape implements Shape{
             throw new BadRequestHttpException("Missing parameter shape");
         }
         switch($input_parameters["shape"]){
-            case 'circle':
+            case self::CIRCLE:
                 return new Circle($input_parameters["radius"]);
-            case 'square':
+            case self::SQUARE:
                 return new Square($input_parameters["side"]);
-            case 'rectangle':
+            case self::RECTANGLE:
                 return new Rectangle($input_parameters["base"], $input_parameters["height"]);
             default:
                 throw new BadRequestHttpException("Shape type not handled");
                 
         }
     }
+    
 }
 
 
@@ -121,7 +127,7 @@ class ShapeAreaCalculator{
     {
         
         try{
-            $shape = BaseShape::getShape($input_parameters);
+            $shape = ShapeFactory::getShape($input_parameters);
             $area = $shape->calcArea();
             $response = AreaApiResponse::buildOKResponse( $input_parameters, $area );
             $response_code = Response::HTTP_OK;

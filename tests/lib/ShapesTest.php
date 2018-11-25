@@ -11,12 +11,12 @@ class ShapesTest extends TestCase{
     public function negativeValues(): array
     {
         return [
-            [-1, BaseShape::CIRCLE],
-            [-5, BaseShape::SQUARE],
-            [-10, BaseShape::RECTANGLE],
-            [-15, BaseShape::CIRCLE],
-            [-20, BaseShape::SQUARE],
-            [-25, BaseShape::RECTANGLE],
+            [-1, ShapeFactory::CIRCLE],
+            [-5, ShapeFactory::SQUARE],
+            [-10, ShapeFactory::RECTANGLE],
+            [-15, ShapeFactory::CIRCLE],
+            [-20, ShapeFactory::SQUARE],
+            [-25, ShapeFactory::RECTANGLE],
             
         ];
     }
@@ -160,8 +160,8 @@ class ShapesTest extends TestCase{
      */
     public function testCircleArea($radiusValue){
         
-        $circle = BaseShape::getShape([
-            "shape" => BaseShape::CIRCLE,
+        $circle = ShapeFactory::getShape([
+            "shape" => ShapeFactory::CIRCLE,
             "radius" => $radiusValue
         ]);
         $this->assertEquals(round((pow($radiusValue, 2) * pi()), BaseShape::DECIMALS), $circle->calcArea());
@@ -185,8 +185,8 @@ class ShapesTest extends TestCase{
      */
     public function testSquareArea($sideValue){
         
-        $square = BaseShape::getShape([
-            "shape" => BaseShape::SQUARE,
+        $square = ShapeFactory::getShape([
+            "shape" => ShapeFactory::SQUARE,
             "side" => $sideValue
         ]);
         $this->assertEquals(round(pow($sideValue, 2), BaseShape::DECIMALS), $square->calcArea());
@@ -208,8 +208,8 @@ class ShapesTest extends TestCase{
      */
     public function testRectangleArea($base, $height){
         
-        $rectangle = BaseShape::getShape([
-            "shape" => BaseShape::RECTANGLE,
+        $rectangle = ShapeFactory::getShape([
+            "shape" => ShapeFactory::RECTANGLE,
             "base" => $base,
             "height" => $height
         ]);
