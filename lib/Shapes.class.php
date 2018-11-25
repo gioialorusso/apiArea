@@ -9,6 +9,17 @@ interface Shape{
 
 abstract class BaseShape implements Shape{
     
+    const NO_NEGATIVE_PARAMS = "Negative parameters not admitted";
+    const SPECIFY_INPUT_PARAMS = "Please specify input parameters";
+    const NO_NONNUMERIC_PARAMS = "You cannot use non-numeric parameters";
+    
+    const CIRCLE = "circle";
+    const SQUARE = "square";
+    const RECTANGLE = "rectangle";
+    
+    const DECIMALS = 3;
+    
+    
     /**
      *
      * @param array $params => The params to validate
@@ -16,16 +27,15 @@ abstract class BaseShape implements Shape{
      */
     public function validate(array $params)
     {
-        
         foreach($params as $param){
             if(is_null($param)){
-                throw new BadRequestHttpException("Please specify input parameters");
+                throw new BadRequestHttpException(self::SPECIFY_INPUT_PARAMS);
             }
             if(!is_numeric($param)){
-                throw new BadRequestHttpException("You cannot use non-numeric parameters");
+                throw new BadRequestHttpException(self::NO_NONNUMERIC_PARAMS);
             }
             if($param < 0){
-                throw new BadRequestHttpException("Negative parameters not admitted");
+                throw new BadRequestHttpException(self::NO_NEGATIVE_PARAMS);
             }
         }
         
@@ -69,7 +79,7 @@ class Square extends BaseShape implements Shape{
     
     public function calcArea(): float
     {
-        return pow($this->side, 2);
+        return round(pow($this->side, 2), BaseShape::DECIMALS);
     }
 }
 
@@ -84,7 +94,7 @@ class Circle extends BaseShape implements Shape{
     
     public function calcArea(): float
     {
-        return round(pow($this->radius, 2)*pi(), 3);
+        return round(pow($this->radius, 2)*pi(), BaseShape::DECIMALS);
     }
 }
 
@@ -101,7 +111,7 @@ class Rectangle extends BaseShape implements Shape{
     
     public function calcArea(): float
     {
-        return round(($this->base * $this->height), 2);
+        return round(($this->base * $this->height), BaseShape::DECIMALS);
     }
 }
 
