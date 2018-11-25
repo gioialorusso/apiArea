@@ -29,9 +29,9 @@ In POST request, the required Content-Type is application/json. The body must be
 * **Method:**
   `GET`
 *  **URL Params**
-   **Required:**
+   * **Required:**
    `radius`
-* **Data Params**
+* **Querystring Params**
   None
   
 * **Success Response:**
@@ -52,9 +52,9 @@ In POST request, the required Content-Type is application/json. The body must be
   `GET`
 *  **URL Params**
    None
-* **Data Params**
+* **Querystring Params**
 
-  **Required**
+  * **Required**
   `side`
 * **Success Response:**
 
@@ -74,9 +74,11 @@ In POST request, the required Content-Type is application/json. The body must be
   `POST`
 *  **URL Params**
    None
+*  **Querystring Params**
+   None
 * **JSON Body Params**
 
-  **Required**
+  * **Required**
   `{"base": x, "height": y}`
   
 * **Headers Params**
